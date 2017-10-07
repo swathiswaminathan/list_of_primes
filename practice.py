@@ -68,11 +68,6 @@ PART TWO:
 
 # PART ONE
 
-"""Note from the coder: 
-
-Practice functions for assignment. Below are the assumptions made while working on the practice:
-1. Arguments are assigned directly as parameters to the functions for testing purpose"""
-
 # 1. Write a function called 'hello_world' that does not take any arguments and
 #    prints "Hello World".
 def hello_world():
