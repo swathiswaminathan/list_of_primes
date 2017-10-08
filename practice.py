@@ -70,6 +70,8 @@ PART TWO:
 
 # 1. Write a function called 'hello_world' that does not take any arguments and
 #    prints "Hello World".
+
+
 def hello_world():
     """function that does not take any argument, and prints the string 'hello world'"""
 
@@ -81,32 +83,37 @@ def hello_world():
 def say_hi(input_name):
     """function that takes a name, and prints 'Hi' followed by the name"""
 
-    print "Hi %s" %(input_name) 
+    print "Hi %s" % (input_name)
 
 
 # 3. Write a function called 'print_product' that takes two integers and
 #    multiplies them together. Print the result.
-def print_product(num1,num2):
+
+
+def print_product(num1, num2):
     """function that takes two integers and prints the product of the two integers"""
 
     print num1 * num2
 
 # 4. Write a function called 'repeat_string' that takes a string and an integer
 #    and prints the string that many times
+
+
 def repeat_string(input_string, count):
     """function that takes a string and integer and prints string that many times"""
-    
+
     print input_string * count
-        
 
 # 5. Write a function called 'print_sign' that takes an integer and prints
 #    "Higher than 0" if higher than zero and "Lower than 0" if lower than zero.
 #    If the integer is zero, print "Zero".
+
+
 def print_sign(num):
     """function that takes a zero and prints whether the number is higher than, lower than or equal to 0"""
 
     if num > 0:
-        print  "Higher than 0"
+        print "Higher than 0"
     elif num < 0:
         print "Lower than 0"
     else:
@@ -115,6 +122,8 @@ def print_sign(num):
 # 6. Write a function called 'is_divisible_by_three' that takes an integer and
 #    returns a boolean (True or False), depending on whether the number is
 #    evenly divisible by 3.
+
+
 def is_divisible_by_three(num):
     """function that takes and integer and returns a boolean, depending on whether it is divisible by 3"""
 
@@ -132,7 +141,7 @@ def num_spaces(input_line_string):
     count = 0
     for char in input_line_string:
         if char == " ":
-            count +=1
+            count += 1
 
     return count
 
@@ -140,9 +149,11 @@ def num_spaces(input_line_string):
 #    and a tip percentage. It should return the total amount paid
 #    (price + price * tip). **However:** passing in the tip percentage should
 #    be optional; if not given, it should default to 15%.
+
+
 def total_meal_price(meal_price, tip_percentage=0.15):
     """function that takes meal price and tip percentage and returns the total amount paid"""
-    
+
     total_amount = meal_price + meal_price * tip_percentage
     return total_amount
 
@@ -150,16 +161,18 @@ def total_meal_price(meal_price, tip_percentage=0.15):
 #    argument and returns two pieces of information as strings --- "Positive"
 #    or "Negative" and "Even" or "Odd". The two strings should be returned in
 #    a list.
+
+
 def sign_and_parity(num1):
     """function that takes an integer, and returns whether the number is even or odd; and positive or negative"""
 
     sign_and_parity_list = []
     if num1 > 0:
         sign_and_parity_list.append("Positive")
-    else: 
+    else:
         sign_and_parity_list.append("Negative")
 
-    if num1%2 == 0:
+    if num1 % 2 == 0:
         sign_and_parity_list.append("Even")
     else:
         sign_and_parity_list.append("Odd")
