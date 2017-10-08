@@ -32,42 +32,45 @@ def is_hometown(town_name):
     >>> is_hometown("San Jose")
     True
 
+    >>> is_hometown("San jose")
+    True
+
     >>> is_hometown("Sunnyvale")
     False
 
     """
     home_town = "San Jose"
-    if town_name == home_town:
+    if town_name.lower() == home_town.lower():
         return True
     else:
         return False
 
 
-def add_first_and_last_name(first_name, last_name):
+def get_full_name(first_name, last_name):
     """function that takes a first name and last name, and returns the concatenation of the two names
 
-    >>> add_first_and_last_name("Swathi", "Iyer")
-    Swathi Iyer
+    >>> get_full_name("Swathi", "Iyer")
+    'Swathi Iyer'
 
    """
 
-    name_string = first_name + " " + last_name
-    return name_string
+    full_name = "{} {}".format(first_name, last_name)
+    return full_name
 
 
 def print_message(first_name, last_name, home_town):
     """function that takes in first name, last name, hometown and prints a message
 
     >>> print_message("Swathi","Iyer","San Jose")
-    Hi Swathi Iyer,we're from the same place!"
+    Hi Swathi Iyer,we're from the same place!
 
     >>> print_message("Swathi","Iyer","Sunnyvale")
     Hi Swathi Iyer, I'd like to visit Sunnyvale!
 
     """
-    full_name = add_first_and_last_name(first_name, last_name)
+    full_name = get_full_name(first_name, last_name)
     if is_hometown(home_town):
-        print "Hi, {},we're from the same place!".format(full_name)
+        print "Hi {},we're from the same place!".format(full_name)
     else:
         print "Hi {}, I'd like to visit {}!".format(full_name, home_town)
 
@@ -143,7 +146,7 @@ def shipping_cost(fruit):
     return 5
 
 
-def append_to_list(fruit_list, fruit):
+def append_to_list(fruit_list, single_fruit):
     """Returns a new list consisting of the old list with the given number
        added to the end.
 
@@ -157,13 +160,15 @@ def append_to_list(fruit_list, fruit):
     ['banana', 'apple', 'blackberry']
 
     """
-    new_fruits_list = fruit_list.append(fruit)
+    new_fruits_list = []
+    for fruit in fruit_list:
+        new_fruits_list.append(fruit)
+    new_fruits_list.append(single_fruit)
+
     return new_fruits_list
 
 
-
-####@TODO:Swa
-def calculate_price(FILL_ME_IN):
+def calculate_price(base_price, state_abbr, tax_percent=.05):
     """Calculate total price of an item, figuring in state taxes and fees.
 
     >>> calculate_price(40, "CA")
@@ -185,8 +190,23 @@ def calculate_price(FILL_ME_IN):
     135.3
 
     """
+    #defining cost, which is the basic cost after adding basic price and tax
+    cost = base_price + (base_price * tax_percent)
+    additional_fee = 0
 
-    pass
+    if state_abbr == "CA":
+        additional_fee = cost * (.03)
+    elif state_abbr == "PA":
+        additional_fee = 2
+    elif state_abbr == "MA":
+        if base_price <= 100:
+            additional_fee = 1
+        else:
+            additional_fee = 3
+
+    total_cost = cost + additional_fee
+    return total_cost
+
 
 
 ###############################################################################
@@ -201,14 +221,19 @@ def calculate_price(FILL_ME_IN):
 #        isn't something we've discussed yet in class; you might need to google how to
 #        write a Python function that takes in an arbitrary number of arguments.
 
-###########@TODO: Swa
-#I know we need to use *args for number of variables, just not getting the right output
 def print_appended_list(alist, *args):
+    """function to append any number of strings to a given list and return the appended list
+
+    >>> print_appended_list([1, 2, 3], "addition", "keyword","swathi", "not bad")
+    [1, 2, 3, 'addition', 'keyword', 'swathi', 'not bad']
+
+    >>> print_appended_list([1, 2, 3])
+    [1, 2, 3]
+    """
     for arg in args:
         alist.append(arg)
-        return alist
 
-print print_appended_list([1, 2, 3], "addition", "keyword")
+    return alist
 
 #    (b) Make a new function with a nested inner function.
 #        The outer function will take in a word.
@@ -218,6 +243,22 @@ print print_appended_list([1, 2, 3], "addition", "keyword")
 #        at index 0 and the result of the inner function at index 1.
 
 #        Example:
+
+
+def outer(word):
+    """function that takes a word and prints the word and three times the word in form of a tuple
+
+    >>> outer("Balloonicorn")
+    ('Balloonicorn', 'BalloonicornBalloonicornBalloonicorn')
+
+    """
+    def inner_word(word):
+        return word * 3
+
+    multiple_word = inner_word(word)
+    return (word, multiple_word)
+
+
 
 #        >>> outer("Balloonicorn")
 #        ('Balloonicorn', 'BalloonicornBalloonicornBalloonicorn')
@@ -230,15 +271,7 @@ print print_appended_list([1, 2, 3], "addition", "keyword")
 if __name__ == "__main__":
     import doctest
 
-    bool_value = is_hometown("Sunnyvale")
-    print bool_value
-
-    full_name = add_first_and_last_name("Swathi","Iyer")
-    print full_name
-
-    print_message("Swathi","Iyer","San Jose")
-
-    print
+    
     result = doctest.testmod()
     if not result.failed:
         print "ALL TESTS PASSED. GOOD WORK!"
