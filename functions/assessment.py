@@ -112,7 +112,7 @@ def print_message(first_name, last_name, home_town):
 
 
 def is_berry(fruit):
-    """Determines if fruit is a berry
+    """Determines if fruit is a berry, return True if a berry, otherwise False
 
     >>> is_berry("blackberry")
     True
@@ -128,7 +128,7 @@ def is_berry(fruit):
 
 
 def shipping_cost(fruit):
-    """Calculates shipping cost of fruit
+    """Calculates shipping cost of fruit, returns cost depending on whether fruit is a berry or not
 
     >>> shipping_cost("blackberry")
     0
@@ -161,6 +161,8 @@ def append_to_list(fruit_list, fruit):
     return new_fruits_list
 
 
+
+####@TODO:Swa
 def calculate_price(FILL_ME_IN):
     """Calculate total price of an item, figuring in state taxes and fees.
 
@@ -198,6 +200,15 @@ def calculate_price(FILL_ME_IN):
 #        arguments, appends them to the list, and returns the entire list. Hint: this
 #        isn't something we've discussed yet in class; you might need to google how to
 #        write a Python function that takes in an arbitrary number of arguments.
+
+###########@TODO: Swa
+#I know we need to use *args for number of variables, just not getting the right output
+def print_appended_list(alist, *args):
+    for arg in args:
+        alist.append(arg)
+        return alist
+
+print print_appended_list([1, 2, 3], "addition", "keyword")
 
 #    (b) Make a new function with a nested inner function.
 #        The outer function will take in a word.
