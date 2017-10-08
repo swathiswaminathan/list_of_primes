@@ -89,7 +89,12 @@ def every_other_item(items):
        ['you', 'are', 'good', 'at', 'code']
     """
 
-    return ['the wrong thing']
+    every_other_item = []
+    for item in items:
+        if items.index(item) % 2 == 0:
+            every_other_item.append(item)
+
+    return every_other_item
 
 
 def smallest_n_items(items, n):
