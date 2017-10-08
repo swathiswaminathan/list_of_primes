@@ -24,8 +24,8 @@ def print_indices(items):
         Volvo 3
 
     """
-    for item in items:
-        print item, items.index(item)
+    for i in range(len(items)):
+        print items[i], i
 
 
 
@@ -65,6 +65,8 @@ def words_in_common(words1, words2):
         ...    )
         ['Python']
     """
+    words1 = set(words1)
+    words2 = set(words2)
     words_in_common = []
     for word1 in words1:
         for word2 in words2:
@@ -72,8 +74,7 @@ def words_in_common(words1, words2):
                 words_in_common.append(word1)
                 words_in_common.sort()
 
-    return words_in_common
-    
+    return words_in_common  
 
 
 def every_other_item(items):
@@ -89,12 +90,12 @@ def every_other_item(items):
        ['you', 'are', 'good', 'at', 'code']
     """
 
-    every_other_item = []
-    for item in items:
-        if items.index(item) % 2 == 0:
-            every_other_item.append(item)
+    each_other_item = []
+    for i in range(len(items)):
+        if i % 2 == 0:
+            each_other_item.append(items[i])
 
-    return every_other_item
+    return each_other_item
 
 
 def smallest_n_items(items, n):
@@ -114,10 +115,16 @@ def smallest_n_items(items, n):
     [1, 1]
 
     """
+    items.sort()
+    n_smallest_items = []
 
-    return []
+    for i in range(n):
+        n_smallest_items.append(items[i])
 
+    n_smallest_items.reverse()
 
+    return n_smallest_items
+    
 #####################################################################
 # END OF ASSESSMENT: You can ignore everything below.
 
