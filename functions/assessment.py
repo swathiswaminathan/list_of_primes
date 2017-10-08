@@ -143,8 +143,7 @@ def shipping_cost(fruit):
     return 5
 
 
-
-def append_to_list(lst, fruit):
+def append_to_list(fruit_list, fruit):
     """Returns a new list consisting of the old list with the given number
        added to the end.
 
@@ -158,8 +157,8 @@ def append_to_list(lst, fruit):
     ['banana', 'apple', 'blackberry']
 
     """
-
-    pass
+    new_fruits_list = fruit_list.append(fruit)
+    return new_fruits_list
 
 
 def calculate_price(FILL_ME_IN):
