@@ -67,17 +67,13 @@ def print_melon_at_price(price):
 
     melons_prices_dict = { 2.50: ['Honeydew', 'Cantaloupe'], 2.95: ['Watermelon'],
                           3.25: ['Crenshaw'], 14.25: ['Christmas']
-                    
-                           }
+            }
 
-    if price in melons_prices_dict:
-        #retrieving the list of all fruits with the particular price in a sorted order
-        melons_at_price = sorted(melons_prices_dict[price])
+    melons_at_price = sorted(melons_prices_dict.get(price, []))
 
-        #For every fruit in the list of fruits
+    if melons_at_price:
         for i in range(len(melons_at_price)):
             print melons_at_price[i]
-
     else:
         print "None found"
 
@@ -100,9 +96,21 @@ def word_length_sorted(words):
         >>> word_length_sorted(["porcupine", "ok"])
         [(2, ['ok']), (9, ['porcupine'])]
     """
+    words = sorted(words)
+    listof_tuple_words = []
+    words_dict = {}
 
-    return []
+    #creating a dictionary with length -> words as key -> value pairs
+    for word in words:
+        words_dict[len(word)] = words_dict.get(len(word), [])
+        words_dict[len(word)].append(word)
 
+    #adding each key->value pairs from the dictionary as a tuple value to the list
+    for keys in sorted(words_dict):
+        new_tuple = (keys, words_dict[keys])
+        listof_tuple_words.append(new_tuple)
+
+    return listof_tuple_words
 
 def translate_to_pirate_talk(phrase):
     """Translate phrase to pirate talk.
@@ -143,7 +151,22 @@ def translate_to_pirate_talk(phrase):
         'me swabbie be not a man!'
     """
 
-    return ""
+    pirate_talk_dict = { 'sir': 'matey', 'hotel': 'feabag inn', 'student': 'swabbie',
+                          'man': 'matey', 'professor': 'foul blaggart', 'restaurant': 'galley',
+                          'your': 'yer', 'excuse': 'arr', 'students': 'swabbies', 'are': 'be',
+                          'restroom': 'head', 'my': 'me', 'is': 'be' }
+    new_string = []
+
+    phrase = phrase.split(' ')
+
+    for word in phrase:
+        if word in pirate_talk_dict:
+            new_word = pirate_talk_dict.get(word)
+            new_string.append(new_word)
+        else:
+            new_string.append(word)
+    return " ".join(new_string)
+
 
 
 def kids_game(names):
@@ -192,7 +215,25 @@ def kids_game(names):
     good solutions here will definitely require a dictionary.
     """
 
-    return []
+    albhabet_dict = {}
+
+
+    for name in names:
+        first_char = name[0]
+        if name.startswith(first_char):
+            albhabet_dict[first_char] = albhabet_dict.get(first_char, [])
+            albhabet_dict[first_char].append(name)
+
+    print albhabet_dict
+
+    games_list = ['bagon']
+
+    for end_letter, name in albhabet_dict.items():
+        end_letter = games_list[-1][-1]
+        games_list.append(albhabet_dict[end_letter])
+
+    print games_list
+
 
 #####################################################################
 # You can ignore everything below this.
