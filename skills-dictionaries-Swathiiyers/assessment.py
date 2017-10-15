@@ -161,7 +161,6 @@ def translate_to_pirate_talk(phrase):
     return " ".join(new_string)
 
 
-
 def kids_game(names):
     """Play a kids' word chain game.
 
@@ -250,7 +249,6 @@ def kids_game(names):
                 continue_game = True
                 break
 
-
         if continue_game:
             look_up_letter = games_list[-1][-1]
         else:
@@ -274,7 +272,6 @@ def print_dict(d):
             "%r: %r" % (k, d[k]) for k in sorted(d)) + "}"
     else:
         print d
-
 
 if __name__ == "__main__":
     print
