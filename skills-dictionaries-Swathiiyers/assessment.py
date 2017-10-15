@@ -30,11 +30,10 @@ def count_words(phrase):
     """
 
     word_count_dict = {}
-    phrase = phrase.split(' ')
+    phrase = phrase.split()
 
-    if phrase:
-        for word in phrase:
-            word_count_dict[word] = phrase.count(word)
+    for word in phrase:
+        word_count_dict[word] = phrase.count(word)
 
     return word_count_dict
 
@@ -97,7 +96,6 @@ def word_length_sorted(words):
         [(2, ['ok']), (9, ['porcupine'])]
     """
     words = sorted(words)
-    listof_tuple_words = []
     words_dict = {}
 
     #creating a dictionary with length -> words as key -> value pairs
@@ -105,12 +103,8 @@ def word_length_sorted(words):
         words_dict[len(word)] = words_dict.get(len(word), [])
         words_dict[len(word)].append(word)
 
-    #adding each key->value pairs from the dictionary as a tuple value to the list
-    for keys in sorted(words_dict):
-        new_tuple = (keys, words_dict[keys])
-        listof_tuple_words.append(new_tuple)
+    return sorted(words_dict.items())
 
-    return listof_tuple_words
 
 def translate_to_pirate_talk(phrase):
     """Translate phrase to pirate talk.
@@ -157,14 +151,13 @@ def translate_to_pirate_talk(phrase):
                           'restroom': 'head', 'my': 'me', 'is': 'be' }
     new_string = []
 
-    phrase = phrase.split(' ')
+    phrase = phrase.split()
 
     for word in phrase:
         if word in pirate_talk_dict:
-            new_word = pirate_talk_dict.get(word)
-            new_string.append(new_word)
-        else:
-            new_string.append(word)
+            word = pirate_talk_dict[word]
+        new_string.append(word)
+
     return " ".join(new_string)
 
 
@@ -218,21 +211,56 @@ def kids_game(names):
     albhabet_dict = {}
 
 
+    # #Breaking down the problem statement to two parts:
+    # #Part 1. Creating a dictionary of words with the last_letter of each word
+    #           as a 'look_up' key, and all words starting with the look_up
+    #           letter as its corresponding values_list.
+    # #Part 2. Starting the game logic, by picking up the first word out of the
+    #           original list, and looking up the dictionary to append word
+    #           based on the 'look_up' value
+
+    albhabet_dict = {}
+
+    #Part 1: Creating the dictionary
+
     for name in names:
         first_char = name[0]
-        if name.startswith(first_char):
-            albhabet_dict[first_char] = albhabet_dict.get(first_char, [])
-            albhabet_dict[first_char].append(name)
+        albhabet_dict[first_char] = albhabet_dict.get(first_char, [])
+        albhabet_dict[first_char].append(name)
 
-    print albhabet_dict
+    #Part 2: Creating the output game list, initializing it with the first
+    #        word from original list.
 
-    games_list = ['bagon']
+    games_list = []
+    games_list.append(names[0])
+    look_up_letter = games_list[-1][-1]
 
-    for end_letter, name in albhabet_dict.items():
-        end_letter = games_list[-1][-1]
-        games_list.append(albhabet_dict[end_letter])
+    # Game ends when one of the two conditions are met:
+    # Condition 1: When the dictionary does not contain a look_up letter
+    # generated from the output list (while condition)
+    # Condition 2: When the output list already contains all the words from
+    # the value list of a given look_up letter (using continue_game flag values)
+    while look_up_letter in albhabet_dict:
+        values_list = albhabet_dict.get(look_up_letter)
+        continue_game = False
 
-    print games_list
+        for word in values_list:
+            if word not in games_list:
+                games_list.append(word)
+                continue_game = True
+                break
+
+
+        if continue_game:
+            look_up_letter = games_list[-1][-1]
+        else:
+            break
+
+    return games_list
+#Note: The above code could have been DRYer, but i couldn't think of any steps
+# to make it so.
+# Learnt how to debug infinite loops and break out of it. Yayyyy!
+# But, if there's any other suggestions, happy to learn more about it.
 
 
 #####################################################################
