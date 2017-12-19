@@ -34,42 +34,35 @@ requirements:
 
 
 
-
-
-
-
-
 3. Explain why looking up, adding elements, and removing elements from a dictionary
 or hash map are all O(1) operations.
-
-
-
+Answer:
+  In a dictionary, the keys are hashed and stored in memory. Hence to find an element, simply looking for the specific index matching the hashed key is enough, and no traversing is required. Hence, looking up, adding elements, and removing elements from a dictionary or hash map are all O(1) operations.
 
 
 
 4. Explain why removing elements from or adding elements to an arbitrary location in
 a Python list are O(n) operations.
-
-
-
-
+Answer:
+  In a python list, the pointers to the elements are stored in contiguous spaces in memory. Hence, adding or removing elements from an arbitrary location requires changing the pointers of every element after the added / removed item until the end of the list. This re-adjustments of other pointers inside the memory location makes the runtime of adding / removing from an arbitrary location as O(n).
 
 
 
 5. What is the correct runtime for:
 
-  - Bubble Sort?
+  - Bubble Sort? : O(n^2)
 
-  - Quicksort?
+  - Quicksort? : O( n log n)
 
-  - Merge Sort?
+  - Merge Sort? : O(n log n)
 
-  - Insertion Sort?
+  - Insertion Sort?: O(n log n)
 
 
 6. What is the difference between a tree and a graph?
+  Trees are unidirectional data structures, with parent-child relationship between nodes. Trees are acyclic in nature.
 
-
+  Graphs can be unidirectional, or undirected where nodes connected to each other by an edge are called as adjacent to each other. Graphs can be cyclic in nature.
 
 
 
@@ -78,23 +71,26 @@ a Python list are O(n) operations.
   Given the list [8, 4, 1, 6, 5, 2, 7, 3]:
   When this function is initially called, what are the values of:
 
-    - lst -
+  Answer: Assuming a random pivot of item '6', from the list. Below are the function when the list is initially called.
 
-    - pivot -
+    - lst - [8, 4, 1, 6, 5, 2, 7, 3]
 
-    - lo -
+    - pivot - 5
 
-    - hi -
+    - lo - [4, 1, 2, 3]
+
+    - hi - [8, 6, 7]
 
 
 
   When the quicksort is first called recursively on the `lo` list, what are the
   values of:
+  Answer: From the above 'lo' list, assuming '2' is the pivot element. Below are the values.
 
-  - lst -
+  - lst - [4, 1, 2, 3]
 
-  - pivot -
+  - pivot - 2
 
-  - lo -
+  - lo - [1]
 
-  - hi -
+  - hi - [3, 4]
